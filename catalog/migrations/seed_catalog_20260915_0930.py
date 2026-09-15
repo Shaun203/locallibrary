@@ -10,40 +10,40 @@ def seed_books(apps, schema_editor):
     Book = apps.get_model("catalog", "Book")
     BookInstance = apps.get_model("catalog", "BookInstance")
 
-    english, created = Language.objects.get_or_create(name__iexact="English")
-    Language.objects.get_or_create(name__iexact="Español")
-    Language.objects.get_or_create(name__iexact="Français")
-    Language.objects.get_or_create(name__iexact="Malti")
-    Language.objects.get_or_create(name__iexact="Deutsch")
-    Language.objects.get_or_create(name__iexact="Italiano")
-    Language.objects.get_or_create(name__iexact="Português")
-    Language.objects.get_or_create(name__iexact="Nederlands")
-    Language.objects.get_or_create(name__iexact="中文")
-    Language.objects.get_or_create(name__iexact="日本語")
-    Language.objects.get_or_create(name__iexact="한국어")
-    Language.objects.get_or_create(name__iexact="العربية")
-    Language.objects.get_or_create(name__iexact="हिन्दी")
-    Language.objects.get_or_create(name__iexact="Polski")
+    english, created = Language.objects.get_or_create(name="English")
+    Language.objects.get_or_create(name="Español")
+    Language.objects.get_or_create(name="Français")
+    Language.objects.get_or_create(name="Malti")
+    Language.objects.get_or_create(name="Deutsch")
+    Language.objects.get_or_create(name="Italiano")
+    Language.objects.get_or_create(name="Português")
+    Language.objects.get_or_create(name="Nederlands")
+    Language.objects.get_or_create(name="中文")
+    Language.objects.get_or_create(name="日本語")
+    Language.objects.get_or_create(name="한국어")
+    Language.objects.get_or_create(name="العربية")
+    Language.objects.get_or_create(name="हिन्दी")
+    Language.objects.get_or_create(name="Polski")
 
-    history, genre_history_created = Genre.objects.get_or_create(name__iexact="History")
+    history, genre_history_created = Genre.objects.get_or_create(name="History")
     computer_science, genre_computer_science_created = Genre.objects.get_or_create(
-        name__iexact="Computer Science"
+        name="Computer Science"
     )
     childrens_humor, genre_childrens_humor_created = Genre.objects.get_or_create(
-        name__iexact="Children's Humor"
+        name="Children's Humor"
     )
     science_fiction, genre_science_fiction_created = Genre.objects.get_or_create(
-        name__iexact="Science Fiction"
+        name="Science Fiction"
     )
     graphic_novels, genre_graphic_novels_created = Genre.objects.get_or_create(
-        name__iexact="Graphic Novels"
+        name="Graphic Novels"
     )
     politics, genre_politics_created = Genre.objects.get_or_create(
-        name__iexact="Politics"
+        name="Politics"
     )
-    food, genre_food_created = Genre.objects.get_or_create(name__iexact="Food Science")
+    food, genre_food_created = Genre.objects.get_or_create(name="Food Science")
     kids, genre_kids_created = Genre.objects.get_or_create(
-        name__iexact="Children's Literature"
+        name="Children's Literature"
     )
 
     snyder, author_snyder_created = Author.objects.get_or_create(

@@ -27,6 +27,13 @@ urlpatterns += [
     path('catalog/', include('catalog.urls')),
 ]
 
+# locallibrary_config/urls.py
+# (after the existing catalog block)
+urlpatterns += [
+    path('chat/', include('chat.urls')),
+]
+
+
 # Add URL maps to redirect the base URL to our application
 from django.views.generic import RedirectView
 

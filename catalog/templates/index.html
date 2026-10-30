@@ -19,6 +19,9 @@
     <li><strong>Genres containing "the":</strong> {{ num_genres }}</li>
     <li><strong>Books with "the" in the title:</strong> {{ num_books_containing_the }}</li>
   </ul>
+  <p>
+    You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}.
+  </p>
   <img src="https://w3.cs.jmu.edu/cs347/f26/stewart.jpeg" alt="Dr. Stewart rockin' that Carolina Blue koy Kahala">
   <img src="{% static 'image.jpg' %}" alt="Brown bear">
 {% endblock %}

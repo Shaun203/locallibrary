@@ -18,6 +18,9 @@ def index(request):
     # The 'all()' is implied by default.
     num_authors = Author.objects.count()
 
+    num_visits = request.session.get('num_visits', 0) + 1
+    request.session['num_visits'] = num_visits
+
     # Counts for records containing the word "the" (case insensitive)
     num_genres = Genre.objects.filter(name__icontains='the').count()
     num_books_containing_the = Book.objects.filter(title__icontains='the').count()
@@ -27,6 +30,7 @@ def index(request):
         'num_instances': num_instances,
         'num_instances_available': num_instances_available,
         'num_authors': num_authors,
+        'num_visits': num_visits,
         'num_genres': num_genres,
         'num_books_containing_the': num_books_containing_the,
     }

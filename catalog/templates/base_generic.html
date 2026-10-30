@@ -22,6 +22,18 @@
                     <li><a href="{% url 'index' %}">Home</a></li>
                     <li><a href="{% url 'books' %}">All books</a></li>
                     <li><a href="{% url 'authors' %}">All authors</a></li>
+                    {% if user.is_authenticated %}
+                    <li>{{ user.get_username }}</li>
+                    <li>
+                        <form method="post" action="{% url 'account_logout' %}">
+                            {% csrf_token %}
+                            <button type="submit">Log out</button>
+                        </form>
+                    </li>
+                    {% else %}
+                    <li><a href="{% url 'account_login' %}">Log in</a></li>
+                    <li><a href="{% url 'account_signup' %}">Sign up</a></li>
+                    {% endif %}
                 </ul>
                 {% endblock %}
             </div>

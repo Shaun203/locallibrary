@@ -9,6 +9,10 @@ def seed_books(apps, schema_editor):
     Book = apps.get_model("catalog", "Book")
     BookInstance = apps.get_model("catalog", "BookInstance")
 
+    def get_or_create_book(**defaults):
+        isbn = defaults.pop("isbn")
+        return Book.objects.get_or_create(isbn=isbn, defaults=defaults)
+
     english, created = Language.objects.get_or_create(
         name__iexact="English", defaults={"name": "English"}
     )
@@ -84,7 +88,7 @@ def seed_books(apps, schema_editor):
         first_name="J. Kenji", last_name="LÃ³pez-Alt"
     )
 
-    b_history, b_history_created = Book.objects.get_or_create(
+    b_history, b_history_created = get_or_create_book(
         title="On Tyranny",
         author=snyder,
         summary="The Founding Fathers tried to protect us from the threat they knew, the tyranny that overcame ancient democracy. Today, our political order faces new threats, not unlike the totalitarianism of the twentieth century. We are no wiser than the Europeans who saw democracy yield to fascism, Nazism, or communism. Our one advantage is that we might learn from their experience.",
@@ -94,7 +98,7 @@ def seed_books(apps, schema_editor):
     b_history.genre.set([history])
     b_history.save()
 
-    b_computer_science, b_computer_science_created = Book.objects.get_or_create(
+    b_computer_science, b_computer_science_created = get_or_create_book(
         title="Think Python: How to Think Like a Computer Scientist",
         author=downey,
         summary="Python is an excellent way to get started in programming, and this clear, concise guide walks you through Python a step at a time--beginning with basic programming concepts before moving on to functions, data structures, and object-oriented design. This revised third edition reflects the growing role of large language models (LLMs) in programming and includes exercises on effective LLM prompts, testing code, and debugging skills.",
@@ -104,7 +108,7 @@ def seed_books(apps, schema_editor):
     b_computer_science.genre.set([computer_science])
     b_computer_science.save()
 
-    b_childrens_humor, b_childrens_humor_created = Book.objects.get_or_create(
+    b_childrens_humor, b_childrens_humor_created = get_or_create_book(
         title="The Book with No Pictures",
         author=novak,
         summary="You might think a book with no pictures seems boring and serious. Except... here's how books work. Everything written on the page has to be said by the person reading it aloud. Even if the words say... BLORK. Or BLUURF. Even if the words are a preposterous song about eating ants for breakfast, or just a list of astonishingly goofy sounds like BLAGGITY BLAGGITY and GLIBBITY GLOBBITY. Cleverly irreverent and irresistibly silly, The Book with No Pictures is one that kids will beg to hear again and again. (And parents will be happy to oblige.)",
@@ -114,7 +118,7 @@ def seed_books(apps, schema_editor):
     b_childrens_humor.genre.set([childrens_humor])
     b_childrens_humor.save()
 
-    b_science_fiction, b_science_fiction_created = Book.objects.get_or_create(
+    b_science_fiction, b_science_fiction_created = get_or_create_book(
         title="Hitchhiker's Guide to the Galaxy",
         author=adams,
         summary="Seconds before the Earth is demolished to make way for a galactic freeway, Arthur Dent is plucked off the planet by his friend Ford Prefect, a researcher for the revised edition of The Hitchhiker's Guide to the Galaxy who, for the last 15 years, has been posing as an out-of-work actor. Together this dynamic pair begin a journey through space aided by quotes from The Hitchhiker's Guide (\"A towel is about the most massively useful thing an interstellar hitchhiker can have.\") and a galaxy full of fellow travelers: Zaphod Beeblebrox, the two-headed, three-armed ex-hippie and totally out-to-lunch president of the galaxy; Trillian, Zaphod's girlfriend (formally Tricia McMillan), whom Arthur tried to pick up at a cocktail party once upon a time zone; Marvin, a paranoid, brilliant, and chronically depressed robot; and Veet Voojagig, a former graduate student who is obsessed with the disappearance of all the ballpoint pens he bought over the years.",
@@ -124,7 +128,7 @@ def seed_books(apps, schema_editor):
     b_science_fiction.genre.set([science_fiction])
     b_science_fiction.save()
 
-    b_graphic_novels, b_graphic_novels_created = Book.objects.get_or_create(
+    b_graphic_novels, b_graphic_novels_created = get_or_create_book(
         title="Nimona",
         author=stevenson,
         summary="Nimona is an impulsive young shapeshifter with a knack for villainy. Lord Ballister Blackheart is a villain with a vendetta. As sidekick and supervillain, Nimona and Lord Blackheart are about to wreak some serious havoc. Their mission: Prove to the kingdom that Sir Ambrosius Goldenloin and his buddies at the Institution of Law Enforcement and Heroics aren't the heroes everyone thinks they are. But as small acts of mischief escalate into a vicious battle, Lord Blackheart realizes that Nimonaâ€™s powers are as murky and mysterious as her past. And her unpredictable wild side might be more dangerous than he is willing to admit. Nemeses! Dragons! Science! Symbolism! After a decade, everyone's favorite shapeshifter continues to capture hearts.",
@@ -134,7 +138,7 @@ def seed_books(apps, schema_editor):
     b_graphic_novels.genre.set([graphic_novels])
     b_graphic_novels.save()
 
-    b_politics, b_politics_created = Book.objects.get_or_create(
+    b_politics, b_politics_created = get_or_create_book(
         title="Feminism Is for Everybody: Passionate Politic",
         author=hooks,
         summary="...[hooks's] is a vision of a beloved community that appeals to all those committed to equality, mutual respect, and justice. hooks applies her critical analysis to the most contentious and challenging issues facing feminists today, including reproductive rights, violence, race, class, and work. With her customary insight and unsparing honesty, hooks calls for a feminism free from divisive barriers but rich with rigorous debate. In language both eye-opening and optimistic, hooks encourages us to demand alternatives to patriarchal, racist, and homophobic culture, and to imagine a different future. hooks speaks to all those in search of true liberation, asking readers to take look at feminism in a new light, to see that it touches all lives. Issuing an invitation to participate fully in feminist movement and to benefit fully from it, hooks shows that feminismâ€”far from being an outdated concept or one limited to an intellectual elite--is indeed for everybody.",
@@ -143,7 +147,7 @@ def seed_books(apps, schema_editor):
     )
     b_politics.genre.set([politics])
     b_politics.save()
-    b_frye, b_frye_created = Book.objects.get_or_create(
+    b_frye, b_frye_created = get_or_create_book(
         title="The Politics of Reality: Essays in Feminist Theory",
         author=frye,
         summary="For anyone first coming to feminism, these essays serve as a backdrop ... for understanding the basic, early and continuing perspectives of feminists. And for all of us they provide a theoretical framework in which to read the present as well as the past.",
@@ -153,7 +157,7 @@ def seed_books(apps, schema_editor):
     b_frye.genre.set([politics])
     b_frye.save()
 
-    b_food_lab, b_food_lab_created = Book.objects.get_or_create(
+    b_food_lab, b_food_lab_created = get_or_create_book(
         title="The Food Lab: Better Home Cooking Through Science",
         author=kenji,
         summary="Ever wondered how to pan-fry a steak with a charred crust and an interior that's perfectly medium-rare from edge to edge when you cut into it? How to make homemade mac 'n' cheese that is as satisfyingly gooey and velvety-smooth as the blue box stuff, but far tastier? How to roast a succulent, moist turkey (forget about brining!)â€”and use a foolproof method that works every time? As Serious Eats's culinary nerd-in-residence, J. Kenji LÃ³pez-Alt has pondered all these questions and more. In The Food Lab, Kenji focuses on the science behind beloved American dishes, delving into the interactions between heat, energy, and molecules that create great food. Kenji shows that often, conventional methods don't work that well, and home cooks can achieve far better results using newâ€”but simpleâ€”techniques. In hundreds of easy-to-make recipes with over 1,000 full-color images, you will find out how to make foolproof Hollandaise sauce in just two minutes, how to transform one simple tomato sauce ...",
@@ -163,7 +167,7 @@ def seed_books(apps, schema_editor):
     b_food_lab.genre.set([food])
     b_food_lab.save()
 
-    b_pizza_night, b_pizza_night_created = Book.objects.get_or_create(
+    b_pizza_night, b_pizza_night_created = get_or_create_book(
         title="Every Night is Pizza Night",
         author=kenji,
         summary='Pipo thinks that pizza is the best. No, Pipo knows that pizza is the best. It is scientific fact. But when she sets out on a neighborhood-spanning quest to prove it, she discovers that "best" might not mean what she thought it meant.',
